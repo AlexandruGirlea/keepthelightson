@@ -8,6 +8,10 @@ skills package, its bundled references and the project documentation.
 
 ## [Unreleased]
 
+### Changed
+
+- Added the project mark and an animated homepage preview to the repository README.
+
 ## [0.1.0] - 2026-09-10
 
 ### Added

@@ -1,14 +1,28 @@
-# Keep The Lights On
+<p align="center">
+  <a href="https://keepthelightson.eu"><img src=".github/assets/klod-mark.svg" width="72" alt="Keep The Lights On light bulb"></a>
+</p>
 
-**KLOD** (Keep The Lights On Development) is a development pattern for software that depends
-on AI. Build the tools, data access and human controls needed to keep essential work running
-when the supplier stops or AI must be switched off.
+<h1 align="center">Keep The Lights On</h1>
 
-[Learn the pattern](https://keepthelightson.eu/learn.html) ·
-[Run the self-check](https://keepthelightson.eu/assess.html) ·
-[Read the specification](spec/SPECIFICATION.md) ·
-[Read the blog](https://keepthelightson.eu/blog/) ·
-[Star on GitHub](https://github.com/AlexandruGirlea/keepthelightson)
+<p align="center"><strong>AI can stop. Your business shouldn’t.</strong></p>
+
+<p align="center">
+  KLOD is a development pattern for software that depends on AI.<br>
+  Build the tools, data access and human controls people need to keep essential work running.
+</p>
+
+<p align="center">
+  <a href="https://keepthelightson.eu/learn.html">Learn the pattern</a> ·
+  <a href="https://keepthelightson.eu/assess.html">Run the self-check</a> ·
+  <a href="spec/SPECIFICATION.md">Read the specification</a> ·
+  <a href="https://keepthelightson.eu/blog/">Read the blog</a>
+</p>
+
+<p align="center">
+  <a href="https://keepthelightson.eu"><img src=".github/assets/klod-story.gif" width="643" alt="An AI supplier disconnects the model, then a prepared person switches to the manual path and keeps the work running"></a>
+</p>
+
+<p align="center"><sub>See the interactive version at <a href="https://keepthelightson.eu">keepthelightson.eu</a>.</sub></p>
 
 <!-- generated:release-line -->
 **Specification 0.1.0** and **skills package 0.1.0**. Release tag: `v0.1.0`.

@@ -22,6 +22,10 @@ ROOT_FILES = {
     "CODE_OF_CONDUCT.md", "CHANGELOG.md", "LICENSE-CODE.md", "LICENSE-SPEC.md",
     "CITATION.cff", "apm.yml",
 }
+PUBLIC_ASSETS = {
+    Path(".github/assets/klod-mark.svg"),
+    Path(".github/assets/klod-story.gif"),
+}
 VERSION = r"\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?"
 LINK = re.compile(r"!?\[[^\]\n]*\]\(\s*(<[^>\n]+>|[^)\s]+)(?:\s+[\"'][^\n]*?[\"'])?\s*\)")
 
@@ -143,13 +147,15 @@ def package_files(errors: list[str]) -> list[Path]:
                 dirs.remove(name)
         for name in names:
             path = parent / name
+            relative = path.relative_to(ROOT)
             if name in LOCAL_NAMES or path.suffix == ".pyc":
                 continue
             if path.is_symlink():
                 errors.append(f"Symlink is not a portable package file: {path.relative_to(ROOT)}")
                 continue
-            if path.suffix not in {".md", ".py", ".yml", ".yaml", ".cff"} and path.name != ".gitignore":
-                errors.append(f"Unexpected package file: {path.relative_to(ROOT)}")
+            if (path.suffix not in {".md", ".py", ".yml", ".yaml", ".cff"}
+                    and path.name != ".gitignore" and relative not in PUBLIC_ASSETS):
+                errors.append(f"Unexpected package file: {relative}")
                 continue
             files.append(path)
     return files
