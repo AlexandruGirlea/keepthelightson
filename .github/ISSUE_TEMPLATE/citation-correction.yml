@@ -1,0 +1,131 @@
+name: Citation correction
+description: A legal citation in this project is wrong, superseded, or misleading in context.
+title: "[Citation] "
+labels:
+  - citation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report a citation that is wrong, outdated or used outside its scope. Include the
+        surrounding sentence and the primary text when you can. You can flag a concern
+        before verifying it; a maintainer will check the evidence before merging a correction.
+  - type: textarea
+    id: as-written
+    attributes:
+      label: The citation as it currently appears
+      description: Copy it exactly, including any surrounding sentence that gives it its meaning.
+      placeholder: >-
+        "Regulation (EU) 2022/2554 Article 32 requires financial entities to maintain ICT
+        continuity plans"
+      render: text
+    validations:
+      required: true
+  - type: dropdown
+    id: document
+    attributes:
+      label: Which document
+      options:
+        - spec/SPECIFICATION.md
+        - A skill instruction or bundled reference
+        - README or other repository file
+        - A page at keepthelightson.eu (give its URL below)
+        - Somewhere else (say where below)
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Exact location
+      description: Clause number, heading, or line number. Whatever gets a maintainer to it in one go.
+      placeholder: Section 7.2, table row 3
+    validations:
+      required: true
+  - type: dropdown
+    id: error-type
+    attributes:
+      label: What kind of error
+      options:
+        - Wrong article or paragraph number
+        - Wrong instrument entirely
+        - Superseded or amended since we wrote it
+        - Wrong date, OJ reference, or CELEX number
+        - Text is misquoted
+        - Citation is correct but does not support the claim made
+        - Scope is overstated (binds fewer entities than we imply)
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: what-is-wrong
+    attributes:
+      label: What is wrong
+      description: >-
+        Be specific about the difference between what we wrote and what the instrument says.
+        If the provision is correct but does not carry the weight we put on it, say that, it is
+        the more common failure.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What it should say
+      description: Proposed replacement text, or the correct citation on its own.
+    validations:
+      required: true
+  - type: input
+    id: primary-source
+    attributes:
+      label: Primary source URL
+      description: >-
+        EUR-Lex, the Official Journal, or the issuing body. Not a law firm briefing, not a
+        summary site, not a chatbot. If the only source you have is secondary, put it here and
+        say so below, and we will verify before merging.
+      placeholder: https://eur-lex.europa.eu/eli/reg/2022/2554/oj
+    validations:
+      required: true
+  - type: dropdown
+    id: verification
+    attributes:
+      label: How you verified it
+      description: >-
+        Answer honestly. An unverified report that turns out to be right is worth far more than a
+        verified one that is wrong, and we would rather check it ourselves than trust a claim
+        nobody made.
+      options:
+        - "I read the provision in the consolidated text on EUR-Lex."
+        - "I read the provision in the Official Journal as published."
+        - "I read the original instrument somewhere other than EUR-Lex."
+        - "I checked a secondary source only (briefing, article, textbook)."
+        - "I have not verified it. I am flagging something that looks wrong."
+      default: 4
+    validations:
+      required: true
+  - type: input
+    id: version-date
+    attributes:
+      label: Date of the version you read
+      description: >-
+        Consolidated texts change. The date of the consolidated version, or the date you
+        accessed it, so a maintainer can reproduce what you saw.
+      placeholder: "Consolidated text of 2026-07-01, accessed 2026-09-10"
+    validations:
+      required: false
+  - type: textarea
+    id: quote
+    attributes:
+      label: The operative words
+      description: >-
+        Optional but persuasive. The sentence or subparagraph that settles it, quoted exactly.
+      render: text
+    validations:
+      required: false
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Before you submit
+      options:
+        - label: >-
+            I have quoted the source rather than paraphrased it, or I have said that I could not
+            check it.
+          required: true

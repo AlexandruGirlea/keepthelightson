@@ -1,0 +1,28 @@
+# APM manifest: https://microsoft.github.io/apm/specs/schemas/manifest-v0.1.schema.json
+
+name: klod
+version: 0.1.0
+
+description: >-
+  Keep The Lights On (KLOD) development practices for AI supplier continuity and
+  human control. The klod skill helps build AI features with a usable human path.
+  The klod-check skill reviews existing code and writes an evidence-based report
+  in klod_report.md.
+
+author: Alex Girlea (https://girlea.ro)
+
+# Skill prose uses CC BY 4.0; repository code uses MIT (LICENSE-CODE.md).
+license: CC-BY-4.0
+
+# Skills are published from skills/<name>/SKILL.md.
+type: skill
+
+# Explicit consent to include the package's published content.
+includes: auto
+
+# No package or MCP dependencies; the skills contain Markdown instructions.
+dependencies:
+  apm: []
+  mcp: []
+
+# Omit targets so installation can detect the consumer's harness or use --target.

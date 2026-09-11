@@ -1,0 +1,97 @@
+name: Question about a clause
+description: Ask what a clause means, or report that it can be read two ways.
+title: "[Question] Clause "
+labels:
+  - question
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If you had to guess what a clause meant, the clause is not finished. Ambiguity reports
+        are the main way a specification improves, so this is a useful issue to file even when
+        you are fairly sure of the answer.
+
+        Concrete situations get better answers than abstract ones. "Does clause 4.4.2 allow a
+        drill where the API key still works?" is answerable. "What counts as unavailable?" is
+        not, quite.
+
+        Answers here often become spec text. The specification is CC BY 4.0, so by describing
+        your situation you are accepting that a future clause may be written from it.
+  - type: input
+    id: clause
+    attributes:
+      label: Clause
+      description: The number, as printed. If it spans two clauses, give both.
+      placeholder: "4.4.2"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Specification version
+      description: The version line at the top of the specification you read.
+      placeholder: "x.y.z"
+    validations:
+      required: true
+  - type: textarea
+    id: situation
+    attributes:
+      label: The situation
+      description: >-
+        What you are actually doing, in enough detail that the clause has something to bite on.
+        Sector and capability help. Invented examples are fine if the real one is confidential,
+        as long as they turn on the same point.
+      placeholder: |
+        We drill claims triage by pointing the internal gateway at a stub that returns errors.
+        The vendor API key is still valid and an engineer could route around the stub in a
+        minute, though nobody does.
+    validations:
+      required: true
+  - type: textarea
+    id: readings
+    attributes:
+      label: The two readings
+      description: >-
+        If you can see more than one way to read the clause, set them out. If you can only see
+        one and it seems wrong, say what it appears to require and why that cannot be right.
+      placeholder: |
+        Reading A: access is genuinely removed, because the people doing the work cannot reach
+        the model.
+        Reading B: access remains, because the organisation retains the ability to restore it in
+        under a minute, so this is simulated unavailability under 4.4.2.
+    validations:
+      required: false
+  - type: textarea
+    id: consequence
+    attributes:
+      label: What turns on the answer
+      description: >-
+        Optional. What you would do differently under each reading. A clause whose readings lead
+        to the same behaviour can wait. One that decides a declared level cannot.
+      placeholder: Under reading B our four drills this year do not count and the capability is L1, not L2.
+    validations:
+      required: false
+  - type: dropdown
+    id: level
+    attributes:
+      label: Level you are working towards for this capability
+      options:
+        - L0 Dark
+        - L1 Torchlight
+        - L2 Generator
+        - L3 Mains
+        - Not applicable
+      default: 4
+    validations:
+      required: false
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Before you submit
+      options:
+        - label: I have read the clause and the section it sits in.
+          required: true
+        - label: >-
+            I understand this is a public tracker and I have kept confidential detail out of the
+            situation I described.
+          required: true

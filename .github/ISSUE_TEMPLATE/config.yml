@@ -1,0 +1,15 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Propose a change to normative text (RFC)
+    url: https://github.com/AlexandruGirlea/keepthelightson/tree/main/rfcs
+    about: >-
+      Use the RFC process for changes to requirements, level definitions or measurement rules.
+      Include the problem, proposed text and impact on existing implementations.
+  - name: Read the specification first
+    url: https://keepthelightson.eu/standard.html
+    about: >-
+      Read the numbered requirements and use the specification-question template to report ambiguity.
+  - name: Read the guides and try the self-check
+    url: https://keepthelightson.eu
+    about: >-
+      Practical guidance, the browser self-check and the KLOD blog.

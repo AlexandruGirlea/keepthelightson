@@ -1,0 +1,48 @@
+name: checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check package layout, portable references and release metadata
+        run: python3 .github/scripts/check_package.py
+      - name: Check integration packaging and project preservation
+        run: python3 -m unittest discover -s .github/tests
+      - name: Build integration release archives
+        run: python3 .github/scripts/build_integrations.py --output "${{ runner.temp }}/klod-integrations"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: klod-integrations
+          path: ${{ runner.temp }}/klod-integrations/*.zip
+  compatibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the tested upstream CLIs
+        run: |
+          python3 -m pip install specify-cli==1.0.6
+          npm install --global @fission-ai/openspec@1.13.0
+          specify version
+          openspec --version
+      - name: Check real CLI installation and workflows
+        run: python3 -m unittest discover -s .github/tests

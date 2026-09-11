@@ -1,0 +1,42 @@
+schema_version: "1.0"
+
+extension:
+  id: klod
+  name: KLOD (Keep the Lights On)
+  version: "0.1.0"
+  description: Plan AI features people can take over, then check the implementation and evidence.
+  author: Alex Girlea
+  repository: https://github.com/AlexandruGirlea/keepthelightson
+  homepage: https://keepthelightson.eu
+  license: CC-BY-4.0
+
+requires:
+  speckit_version: ">=1.0.6,<2.0.0"
+
+provides:
+  commands:
+    - name: speckit.klod.plan
+      file: commands/plan.md
+      description: Add human takeover requirements and acceptance checks to the active feature plan.
+    - name: speckit.klod.check
+      file: commands/check.md
+      description: Audit AI dependencies and human takeover evidence after implementation.
+
+hooks:
+  after_plan:
+    command: speckit.klod.plan
+    optional: true
+    prompt: Add KLOD human takeover requirements before generating implementation tasks?
+    description: Prepare human operation and failure acceptance criteria for the active feature.
+  after_implement:
+    command: speckit.klod.check
+    optional: true
+    prompt: Check the implementation's AI dependencies and human takeover evidence with KLOD?
+    description: Write an evidence-based KLOD report after implementation.
+
+tags:
+  - ai
+  - resilience
+  - human-takeover
+  - planning
+  - verification

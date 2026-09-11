@@ -1,0 +1,10 @@
+# Local editor and Python files
+.DS_Store
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+.cache/

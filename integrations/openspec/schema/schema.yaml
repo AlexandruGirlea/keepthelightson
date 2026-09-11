@@ -1,0 +1,144 @@
+name: klod
+version: 1
+description: Plan AI features with human operation, explicit limits and verifiable recovery behaviour.
+artifacts:
+  - id: proposal
+    generates: proposal.md
+    description: Feature scope, affected capabilities and work that depends on runtime AI
+    template: proposal.md
+    instruction: |
+      Read openspec/schemas/klod/skills/klod/SKILL.md before planning. Its relative
+      references resolve inside that skill folder. Use the existing project's
+      conventions and keep the change within the requested feature.
+      Use that guidance to plan this artifact only. Leave code changes, test
+      execution and LIGHTS.md updates to the implementation phase.
+
+      Explain the problem, requested outcome, affected systems and capability
+      changes. Inspect existing openspec/specs/ before choosing capability paths.
+      Preserve existing capability paths; list each new or changed capability
+      that will receive a delta spec. Mark breaking behaviour changes clearly.
+
+      Identify runtime AI, the work it serves and the essential human outcome.
+      Distinguish hosted, self-run and development-only AI. KLOD's supplier
+      levels apply only to hosted runtime dependence; using a coding assistant
+      alone does not put the product in scope. Keep unknown owners, delay and
+      capacity targets explicit. Never invent authority or evidence.
+
+      For changes without runtime AI, record why KLOD's human-operation work is
+      not applicable and continue with the feature normally. If no behaviour
+      changes, explicitly set skip_specs: true in the change's .openspec.yaml
+      rather than inventing requirements to satisfy validation.
+    requires: []
+
+  - id: specs
+    generates: "specs/**/*.md"
+    description: Observable feature and human-operation requirements
+    template: spec.md
+    instruction: |
+      Write a delta at specs/<capability-path>/spec.md for each capability in the
+      proposal. Preserve the exact paths of existing capabilities. For new
+      capabilities, begin with a ## Purpose paragraph of at least 50 characters.
+      Read existing specs in full before changing their requirements.
+
+      Use ## ADDED Requirements, ## MODIFIED Requirements, ## REMOVED Requirements
+      or ## RENAMED Requirements as appropriate. Each ### Requirement: title
+      has a SHALL or MUST statement and at least one #### Scenario: with WHEN
+      and THEN. MODIFIED contains the full updated requirement and every scenario;
+      partial blocks would discard existing behaviour during sync. REMOVED gives
+      Reason and Migration. RENAMED uses FROM and TO requirement headings.
+
+      Express observable behaviour, including access denial and failure outcomes,
+      rather than implementation details. For applicable AI work specify saved
+      inputs and state, authorised human completion, unavailable-provider behaviour,
+      independent stop and deliberate restart. Cover late or queued results and
+      conflicting edits when the feature has them. Define reduced service or an
+      approved safe state accurately; a stopped system is not evidence of continuity.
+
+      Use the bundled klod skill and its human-control guide for scope and safety.
+      Tests, required drill procedures and observed drill results are different
+      things: write requirements here, never fabricated results. With an explicit
+      skip_specs: true change and no behaviour change, do not manufacture a delta.
+    requires:
+      - proposal
+
+  - id: design
+    generates: design.md
+    description: Implementation decisions and a feasible human path
+    template: design.md
+    instruction: |
+      Read openspec/schemas/klod/skills/klod/SKILL.md and the implementation,
+      provider-portability, human-control and verification references it names.
+      Describe the implementation here; do not execute the skill's code-changing
+      or verification steps while writing this design artifact.
+      Start this design report with that skill's report identity block. Obtain
+      local facts using its metadata helper and model identity from the host;
+      record unavailable values honestly.
+
+      Explain the implementation decisions, data flow and deployment constraints.
+      Trace the normal path and the human path through to the delivered outcome.
+      State who may stop, operate and re-enable AI; preserve existing permissions.
+      Keep inputs, business rules and work state usable without the AI supplier.
+      Isolate provider/model choices behind configuration and an adapter. Explain
+      what cannot move between providers without rework or renewed evaluation.
+
+      Address shared dependencies that could disable both AI and human work.
+      For stateful work cover durable stop state, in-flight output acceptance,
+      retries, human edits, uncertain effects and concurrency. Preserve independent
+      interlocks and approved safe states for physical systems; do not invent
+      operating procedures. Name unknown decisions that affect implementation.
+
+      Plan isolated tests and a human handover. A drill using real work needs an
+      authorised scope and recovery plan; its date, participants and measurements
+      stay missing until it happens. Keep a small change's design short. If runtime
+      AI is out of scope, say so without adding unnecessary fallback machinery.
+    requires:
+      - proposal
+
+  - id: tasks
+    generates: tasks.md
+    description: Implementation tasks, execution checks and handover evidence
+    template: tasks.md
+    instruction: |
+      Read the proposal, delta specs and design. Resolve decisions that would
+      materially change implementation before creating dependent tasks.
+
+      Use numbered sections and checkbox tasks in the form - [ ] 1.1 Description.
+      Each task names an observable completion check. Implement the requested
+      feature and applicable human-operation requirements together. Include
+      integration checks through the application's entry points with deterministic
+      AI adapters, isolated data and local effect sinks.
+
+      Include explicit work after implementation: run relevant normal, AI-failed,
+      operator-stopped and human-completion checks; inspect persisted state and
+      effects; test late results/restarts/conflicts when applicable; record actual
+      commands, results and skipped checks. Update the affected LIGHTS.md entry
+      while preserving owner notes and unrelated entries. Follow the bundled klod
+      skill's verification and handoff format.
+
+      If the user requests a repository audit, run the separately bundled
+      klod-check skill in read-only mode and reconcile its findings with the
+      change. It assesses the repository, not just this change; incomplete
+      coverage is Partial. It must not run the implementation tests or a drill.
+
+      Tests and code inspection cannot establish L2 or L3. Record a needed live
+      drill as an outstanding follow-up unless its authorisation and evidence
+      exist. Never mark a task complete because a document predicts success.
+    requires:
+      - specs
+      - design
+
+apply:
+  requires: [tasks]
+  tracks: tasks.md
+  instruction: |
+    Read openspec/schemas/klod/skills/klod/SKILL.md and follow its referenced
+    implementation and verification guidance. Work through the change's tasks
+    using the existing stack. Mark tasks complete only after the stated check.
+    Keep the human path within the requested scope and protect existing data,
+    controls and unrelated work. Report blockers and unrun checks honestly.
+
+    After implementation, follow openspec/schemas/klod/verification.md. Run
+    authorised isolated application tests; a klod-check audit itself remains
+    read-only. Record the actual handoff and update the affected LIGHTS.md entry.
+    File existence and checked boxes alone do not demonstrate successful tests,
+    operator authority, a real drill or any supplier-dependence level.

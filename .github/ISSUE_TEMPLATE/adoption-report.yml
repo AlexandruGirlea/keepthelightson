@@ -1,0 +1,224 @@
+name: Adoption report
+description: Report that you applied KLOD to a capability, whether it went well or not.
+title: "[Adoption] "
+labels:
+  - adoption
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue tracker is public. Everything you type here is public the moment you press
+        submit, including your organisation's name if you type it. The "willing to be listed"
+        question at the bottom governs the adopter registry, not this issue. If you need the
+        report itself to be private, email the maintainer instead and say so.
+
+        Do not include personal data, customer data, or anything a security team would object to.
+        Roles, not names.
+
+        Failed attempts are more useful than successes. A drill that went badly tells us where
+        the specification is wrong. Please file those.
+  - type: dropdown
+    id: sector
+    attributes:
+      label: Sector
+      description: Closest match. This is for the registry, which reports by sector rather than by name.
+      options:
+        - Banking or payments
+        - Insurance
+        - Other financial services
+        - Health or social care
+        - Public administration
+        - Energy or utilities
+        - Transport or logistics
+        - Telecoms or digital infrastructure
+        - Manufacturing or industrial
+        - Retail or e-commerce
+        - Software or IT services
+        - Legal or professional services
+        - Education or research
+        - Media or publishing
+        - Non-profit or NGO
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: regulatory-scope
+    attributes:
+      label: Regulatory scope
+      description: >-
+        Optional. Section 7 of the specification records that DORA and NIS2 already require
+        something adjacent for some entities. Knowing who is in scope tells us whether KLOD is
+        doing work the law already does.
+      options:
+        - "Not in scope of DORA or NIS2, as far as we know"
+        - "In scope of DORA (financial entity)"
+        - "In scope of NIS2 (essential or important entity)"
+        - "In scope of both"
+        - "Not sure"
+      default: 4
+    validations:
+      required: false
+  - type: dropdown
+    id: size
+    attributes:
+      label: Headcount
+      description: Optional. Manual capacity means something different at 12 people and at 12,000.
+      options:
+        - Under 10
+        - 10 to 49
+        - 50 to 249
+        - 250 to 999
+        - 1000 or more
+        - Prefer not to say
+    validations:
+      required: false
+  - type: input
+    id: capability
+    attributes:
+      label: Capability assessed
+      description: >-
+        One capability, not the whole organisation. Clause 5.5: conformance attaches to
+        capabilities. "Claims triage" is a capability. "Our AI usage" is not.
+      placeholder: First-line claims triage for motor
+    validations:
+      required: true
+  - type: input
+    id: dependency
+    attributes:
+      label: What it depends on
+      description: >-
+        Optional. The AI system and, if you know it, what that system in turn depends on
+        (compute provider, jurisdiction). Clause 4.2.4 exists because most fallbacks share a
+        failure mode with the thing they are meant to replace.
+      placeholder: Hosted frontier model API, US provider, single region
+    validations:
+      required: false
+  - type: dropdown
+    id: level
+    attributes:
+      label: Level reached
+      description: >-
+        L0 Dark, no manual path. L1 Torchlight, documented but never exercised. L2 Generator,
+        drilled every 90 days on real work with TTM measured. L3 Mains, people do the work
+        routinely.
+      options:
+        - L0 Dark
+        - L1 Torchlight
+        - L2 Generator
+        - L3 Mains
+    validations:
+      required: true
+  - type: textarea
+    id: manual-path
+    attributes:
+      label: What the manual path is
+      description: >-
+        Who does the work, with what, and what they cannot do. Clause 4.2.2 requires the
+        documentation to state the volume at which the path fails, so please state it here too.
+      placeholder: |
+        Two adjusters working from the pre-2023 decision matrix in the shared drive, plus the
+        policy wording PDFs. Cannot handle multi-vehicle claims without a supervisor. Breaks
+        above roughly 60 claims a day.
+    validations:
+      required: true
+  - type: input
+    id: ttm
+    attributes:
+      label: Measured Time to Manual
+      description: >-
+        Elapsed time from the decision to revert until the first output at accepted quality.
+        From a drill, never estimated (clause 4.3.2). Leave blank if you have not drilled. An
+        estimate here is worse than a blank, because it looks like a measurement.
+      placeholder: 3 h 40 min
+    validations:
+      required: false
+  - type: input
+    id: capacity
+    attributes:
+      label: Measured manual capacity
+      description: Share of normal volume sustained, and for how long. Written as a pair.
+      placeholder: 40% for 30 days
+    validations:
+      required: false
+  - type: input
+    id: drill-date
+    attributes:
+      label: Date of the drill the figures came from
+      description: ISO date. Clause 4.3.4, a figure older than twelve months cannot be relied on.
+      placeholder: "2026-08-14"
+    validations:
+      required: false
+  - type: dropdown
+    id: drill-conditions
+    attributes:
+      label: Drill conditions
+      description: >-
+        Clause 4.4.2. Access removed means the API key was revoked, the route was blocked, or
+        the tool was otherwise genuinely gone. Told not to use it is not the same thing and does
+        not count towards L2.
+      options:
+        - "No drill yet"
+        - "Announced, access genuinely removed"
+        - "Unannounced, access genuinely removed"
+        - "People were told not to use it, access remained"
+        - "Tabletop only, no real work"
+      default: 0
+    validations:
+      required: false
+  - type: textarea
+    id: what-went-wrong
+    attributes:
+      label: What went wrong
+      description: >-
+        The part we most want. Clause 4.4.5 requires a drill to record what went wrong, and a
+        drill where nothing went wrong usually means the drill was too easy. If you have not
+        drilled, write "no drill yet" and say what is stopping you.
+      placeholder: |
+        Nobody could find the current pricing table without the assistant. Two of the three
+        named people had never done the work unaided. The first output was 55 minutes in but it
+        was rejected on review, so real TTM was 3 h 40 min, not 55 min.
+    validations:
+      required: true
+  - type: textarea
+    id: spec-friction
+    attributes:
+      label: Where the specification did not fit
+      description: >-
+        Optional, and treat it as an invitation. Clauses that were ambiguous, impossible, or
+        obviously written by someone who has not worked in your sector. This is how the text
+        gets fixed.
+    validations:
+      required: false
+  - type: dropdown
+    id: listing
+    attributes:
+      label: Willing to be listed publicly
+      description: >-
+        Optional, and no is a perfectly good answer. The default is no. The registry is more
+        useful with names in it, but the reports are more honest without them, and honest is
+        worth more.
+      options:
+        - "No. Do not list us anywhere."
+        - "Sector and level only, no organisation name."
+        - "Yes, list the organisation name."
+      default: 0
+    validations:
+      required: false
+  - type: input
+    id: listing-name
+    attributes:
+      label: Name to use in the registry
+      description: Only if you chose to be named above. Leave blank otherwise.
+    validations:
+      required: false
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Before you submit
+      options:
+        - label: I understand this issue is public and I have kept personal and customer data out of it.
+          required: true
+        - label: >-
+            Any figures I have given were measured in a drill, or the field is blank. I have not
+            estimated a TTM.
+          required: true
