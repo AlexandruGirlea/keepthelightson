@@ -92,6 +92,11 @@ def expected_outputs() -> dict[Path, str]:
     guide = ROOT / "integrations/openspec/README.md"
     outputs[guide] = replace_once(rf"^\*\*Version:\*\* {VERSION}\.", f"**Version:** {package_version}.",
                                   read(guide), "OpenSpec guide version")
+    # Setup guides install from the tagged release, so their URLs follow the package version.
+    for path in (ROOT / "README.md", ROOT / "integrations/spec-kit/README.md", guide):
+        text = re.sub(re.escape(REPO_URL) + rf"/releases/download/v{VERSION}/",
+                      f"{REPO_URL}/releases/download/v{package_version}/", outputs.get(path, read(path)))
+        outputs[path] = re.sub(rf"--branch v{VERSION} ", f"--branch v{package_version} ", text)
     portable_licence = licence
     for name in ("LICENSE-CODE.md", "CONTRIBUTING.md"):
         portable_licence = portable_licence.replace(f"]({name})", f"]({REPO_URL}/blob/main/{name})")

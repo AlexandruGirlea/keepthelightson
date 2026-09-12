@@ -8,9 +8,13 @@ skills package, its bundled references and the project documentation.
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-09-12
+
 ### Changed
 
 - Added the project mark and an animated homepage preview to the repository README.
+- The Spec Kit and OpenSpec guides install from the tagged repository and its release
+  archives, which a release workflow now attaches to each GitHub release.
 
 ## [0.1.0] - 2026-09-10
 

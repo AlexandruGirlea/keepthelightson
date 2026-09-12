@@ -25,15 +25,18 @@ cd my-project
 Choose your actual coding agent instead of `claude` when initialising. Skip these commands
 for a project that already uses Spec Kit.
 
-Install the extension archive from your project root:
+Install the extension from the matching KLOD release, from your project root:
 
 ```bash
-specify extension add klod --from https://keepthelightson.eu/downloads/integrations/klod-spec-kit.zip
+specify extension add klod --from https://github.com/AlexandruGirlea/keepthelightson/releases/download/v0.1.1/klod-spec-kit.zip
 specify extension list
 ```
 
-Spec Kit asks you to confirm installation from the URL. The archive contains the manifest,
-commands and all KLOD references. This direct installation does not need a catalog listing.
+Spec Kit asks you to confirm installation from the URL. The archive is built from the tagged
+source by the repository's release workflow and attached to every entry on the
+[releases page](https://github.com/AlexandruGirlea/keepthelightson/releases). It contains the
+manifest, commands and all KLOD references. This direct installation does not need a catalog
+listing.
 
 To install from a local checkout, use the extension directory:
 
@@ -80,8 +83,8 @@ establish L2 or L3; those levels retain KLOD's real-work evidence requirements.
 
 ## Update or remove
 
-For an archive update, rerun the archive installation command with `--force`. For a local
-update, rerun the local installation command with `--force`. Review the new source first;
+To update, rerun the installation command with the new release's URL and `--force`. For a
+local checkout, rerun the local installation command with `--force`. Review the new source first;
 installation copies the bundled guidance into your project.
 
 ```bash

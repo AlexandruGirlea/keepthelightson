@@ -4,7 +4,7 @@ Plan AI features with a human path, then check the implemented behaviour. This
 independent custom schema adds KLOD to OpenSpec's proposal, specs, design and tasks.
 It includes the portable `klod` and `klod-check` guidance and their references.
 
-**Version:** 0.1.0. **Compatibility tested:** OpenSpec 1.13.0, using its released CLI.
+**Version:** 0.1.1. **Compatibility tested:** OpenSpec 1.13.0, using its released CLI.
 This is a custom schema, not an official OpenSpec plugin or an accepted catalog entry.
 
 ## Install
@@ -20,20 +20,20 @@ openspec init
 Choose your coding assistant during OpenSpec setup. If the project is already
 initialised, keep its current setup.
 
-[Download the KLOD OpenSpec integration](https://keepthelightson.eu/downloads/integrations/klod-openspec.zip)
-and extract it. From your project directory, run the installer from that extracted folder:
+OpenSpec has no command for fetching a schema from a repository, so the schema ships with
+a small installer. Clone the KLOD repository at the release tag next to your project, which
+keeps the checkout out of your own repository, then run the installer from your project
+directory:
 
 ```sh
-python3 /path/to/klod-openspec/install.py --project .
+git clone --depth 1 --branch v0.1.1 https://github.com/AlexandruGirlea/keepthelightson.git ../keepthelightson
+python3 ../keepthelightson/integrations/openspec/install.py --project .
 openspec schema validate klod
 ```
 
-Or, from a checkout of the KLOD repository:
-
-```sh
-python3 /path/to/keepthelightson/integrations/openspec/install.py --project .
-openspec schema validate klod
-```
+The same files are attached to each entry on the
+[releases page](https://github.com/AlexandruGirlea/keepthelightson/releases) as
+`klod-openspec.zip`. Extract it and run its `install.py` the same way if you prefer a download.
 
 The installer puts the complete bundle in `openspec/schemas/klod/`. It leaves
 `openspec/config.yaml`, other schemas, assistant configuration and existing changes
@@ -113,7 +113,7 @@ an agreed scope and recovery controls. Never invent participants, dates or measu
 
 ## Update or customise
 
-Download the new bundle and run its installer against the same project. An unchanged
+Check out the new release tag and run its installer against the same project. An unchanged
 installation can be updated repeatedly. Only previously managed, unchanged files may
 be replaced or removed; unrelated files stay in place. The installer refuses local
 edits, missing managed files, file collisions and symbolic links before making changes.

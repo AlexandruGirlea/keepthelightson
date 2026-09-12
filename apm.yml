@@ -1,7 +1,7 @@
 # APM manifest: https://microsoft.github.io/apm/specs/schemas/manifest-v0.1.schema.json
 
 name: klod
-version: 0.1.0
+version: 0.1.1
 
 description: >-
   Keep The Lights On (KLOD) development practices for AI supplier continuity and

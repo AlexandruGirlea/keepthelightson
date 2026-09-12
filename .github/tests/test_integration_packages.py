@@ -49,6 +49,8 @@ class IntegrationPackageTests(unittest.TestCase):
             self.assertIn('version: "7.8.9"', (root / "integrations/spec-kit/extension.yml").read_text())
             self.assertIn('VERSION = "7.8.9"', (root / "integrations/openspec/install.py").read_text())
             self.assertIn('**Version:** 7.8.9.', (root / "integrations/openspec/README.md").read_text())
+            self.assertIn("/releases/download/v7.8.9/klod-spec-kit.zip", (root / "integrations/spec-kit/README.md").read_text())
+            self.assertIn("--branch v7.8.9 ", (root / "integrations/openspec/README.md").read_text())
             for base in BUNDLED_SKILLS.values():
                 for skill in ("klod", "klod-check"):
                     self.assertEqual((root / base / skill / "references/human-control.md").read_bytes(),

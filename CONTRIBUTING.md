@@ -99,7 +99,8 @@ from the specification. Commit source changes and updated copies together.
 
 The integration packages also bundle both skills. Edit the canonical skill files and run
 `check_package.py --sync` to refresh every copy. Their READMEs are also the website setup
-guides, so update setup instructions there. Build reproducible ZIP files with
+guides, so update setup instructions there. The release workflow attaches reproducible ZIP
+files to each GitHub release; build them locally with
 `python3 .github/scripts/build_integrations.py --output .cache/integrations`.
 The same synchronisation command updates both adapter versions from `apm.yml`.
 
