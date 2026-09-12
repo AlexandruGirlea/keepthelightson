@@ -29,7 +29,7 @@ body:
         - spec/SPECIFICATION.md
         - A skill instruction or bundled reference
         - README or other repository file
-        - A page at keepthelightson.eu (give its URL below)
+        - A page at keepthelightson.dev (give its URL below)
         - Somewhere else (say where below)
     validations:
       required: true

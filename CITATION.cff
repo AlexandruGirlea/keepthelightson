@@ -1,13 +1,13 @@
 cff-version: 1.2.0
 message: "If you cite this specification, give the version and the date you consulted it."
-title: "Keep The Lights On (KLOD): a development pattern for work that depends on an AI supplier"
+title: "Keep The Lights On Development (KLOD): a pattern for work that depends on an AI supplier"
 type: software
 version: 0.1.0
 date-released: 2026-09-10
 authors:
   - family-names: Girlea
     given-names: Alex
-url: "https://keepthelightson.eu"
+url: "https://keepthelightson.dev"
 repository-code: "https://github.com/AlexandruGirlea/keepthelightson"
 license: CC-BY-4.0
 keywords:

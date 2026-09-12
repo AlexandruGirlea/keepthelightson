@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="https://keepthelightson.eu"><img src=".github/assets/klod-mark.svg" width="72" alt="Keep The Lights On light bulb"></a>
+  <a href="https://keepthelightson.dev"><img src=".github/assets/klod-mark.svg" width="72" alt="Keep The Lights On light bulb"></a>
 </p>
 
-<h1 align="center">Keep The Lights On</h1>
+<h1 align="center">Keep The Lights On Development (KLOD)</h1>
 
 <p align="center"><strong>AI can stop. Your business shouldn’t.</strong></p>
 
@@ -12,20 +12,20 @@
 </p>
 
 <p align="center">
-  <a href="https://keepthelightson.eu/learn.html">Learn the pattern</a> ·
-  <a href="https://keepthelightson.eu/assess.html">Run the self-check</a> ·
+  <a href="https://keepthelightson.dev/learn.html">Learn the pattern</a> ·
+  <a href="https://keepthelightson.dev/assess.html">Run the self-check</a> ·
   <a href="spec/SPECIFICATION.md">Read the specification</a> ·
-  <a href="https://keepthelightson.eu/blog/">Read the blog</a>
+  <a href="https://keepthelightson.dev/blog/">Read the blog</a>
 </p>
 
 <p align="center">
-  <a href="https://keepthelightson.eu"><img src=".github/assets/klod-story.gif" width="643" alt="An AI supplier disconnects the model, then a prepared person switches to the manual path and keeps the work running"></a>
+  <a href="https://keepthelightson.dev"><img src=".github/assets/klod-story.gif" width="643" alt="An AI supplier disconnects the model, then a prepared person switches to the manual path and keeps the work running"></a>
 </p>
 
-<p align="center"><sub>See the interactive version at <a href="https://keepthelightson.eu">keepthelightson.eu</a>.</sub></p>
+<p align="center"><sub>See the interactive version at <a href="https://keepthelightson.dev">keepthelightson.dev</a>.</sub></p>
 
 <!-- generated:release-line -->
-**Specification 0.1.0** and **skills package 0.1.1**. Release tag: `v0.1.1`.
+**Specification 0.1.0** and **skills package 0.1.2**. Release tag: `v0.1.2`.
 <!-- /generated:release-line -->
 
 ## Use KLOD with your workflow
@@ -84,12 +84,12 @@ Install with [APM](https://github.com/microsoft/apm) from your project directory
 
 <!-- generated:install-command -->
 ```sh
-apm install AlexandruGirlea/keepthelightson#v0.1.1
+apm install AlexandruGirlea/keepthelightson#v0.1.2
 ```
 <!-- /generated:install-command -->
 
 Run `/klod-check` in Claude Code or `$klod-check` in Codex. To build a feature, invoke `klod`
-with the feature request. See [installation and usage](https://keepthelightson.eu/skills.html) for other assistants.
+with the feature request. See [installation and usage](https://keepthelightson.dev/skills.html) for other assistants.
 
 ## Use the report
 
@@ -131,7 +131,7 @@ The [evidence gates](skills/klod-check/references/gates.md) define all requireme
 - `rfcs/`: proposals and the process for changing requirements.
 
 Each skill includes its references, licence and report metadata helper, so it can be used
-without the website. Read [keepthelightson.eu](https://keepthelightson.eu) for guides,
+without the website. Read [keepthelightson.dev](https://keepthelightson.dev) for guides,
 the browser self-check and the blog.
 
 ## Check a change
@@ -139,8 +139,7 @@ the browser self-check and the blog.
 Use Python 3.10+ from the repository root. No third-party packages are needed:
 
 ```sh
-python3 .github/scripts/check_package.py --sync
-python3 .github/scripts/check_package.py
+python3 .github/scripts/check_package.py --sync && python3 .github/scripts/check_package.py
 ```
 
 The first command updates bundled references and release labels from their canonical sources.

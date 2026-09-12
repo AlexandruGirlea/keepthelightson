@@ -3,7 +3,7 @@ name: klod-check
 license: CC-BY-4.0, see references/LICENSE-SPEC.md
 metadata:
   author: Alex Girlea
-  homepage: https://keepthelightson.eu
+  homepage: https://keepthelightson.dev
 description: Audit a product's hosted AI dependencies, AI-off controls and human takeover paths; write klod_report.md with evidence, supported levels and next actions. Use for outage readiness, emergency human-control reviews and rescans. Grade hosted supplier dependence; review self-run runtime AI controls separately under principle 6. Libraries are not graded. The check reads files without calling providers, running drills or certifying compliance.
 ---
 
@@ -102,7 +102,7 @@ origin credentials. Obtain the active model identity from reliable host context.
 Follow the report format's section order, severity and confidence definitions. After the
 identity block, state the dependent-capability count, worst supported level and coverage.
 Take the specification version from the bundled specification, not the skill package.
-Link clause citations, for example [4.2.3](https://keepthelightson.eu/standard.html#c-4-2-3).
+Link clause citations, for example [4.2.3](https://keepthelightson.dev/standard.html#c-4-2-3).
 
 Before saving, reconcile headline count, capability rows, suppliers, inventory and finding IDs.
 Open cited project paths and check line ranges. Keep missing evidence distinct from confirmed

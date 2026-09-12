@@ -71,8 +71,7 @@ records the legal context and its sources.
 Use Python 3.10+ from the repository root. The package check uses only the standard library:
 
 ```sh
-python3 .github/scripts/check_package.py --sync
-python3 .github/scripts/check_package.py
+python3 .github/scripts/check_package.py --sync && python3 .github/scripts/check_package.py
 ```
 
 The first command synchronises bundled references, licence copies and release labels. The

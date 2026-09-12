@@ -161,7 +161,7 @@ change plus an untested prompt; no level consequence.
 Status: unchanged. Severity: medium. Confidence: high.
 Capability: support drafting, on Provider A. Staff can reply manually after supplier loss,
 but the most recent recorded successful drill was 102 days ago.
-Requirement: [4.4.1](https://keepthelightson.eu/standard.html#c-4-4-1).
+Requirement: [4.4.1](https://keepthelightson.dev/standard.html#c-4-4-1).
 Evidence: LIGHTS.md:18 identifies docs/drills/2026-06-01.md as the last successful drill.
 Counterevidence: the runbook and independent manual path remain available.
 Consequence: supported L1; the 90-day requirement is unmet. The existing L2 declaration has

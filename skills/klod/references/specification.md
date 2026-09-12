@@ -1,6 +1,6 @@
 # Keep The Lights On
 
-**Version 0.1.0** · Alex Girlea · Specification text licensed CC BY 4.0 · keepthelightson.eu
+**Version 0.1.0** · Alex Girlea · Specification text licensed CC BY 4.0 · keepthelightson.dev
 
 ---
 
@@ -78,7 +78,7 @@ principles above use none of these words and can be read without them.
 The principles are design guidance. Principle 6 also addresses unsafe behaviour by a self-run
 model; the numbered clauses and L0 to L3 declarations remain about supplier dependence.
 An off switch or a continuity level does not establish that a system is safe to operate.
-See the [human-control guide](https://keepthelightson.eu/human-control.html) for implementation
+See the [human-control guide](https://keepthelightson.dev/human-control.html) for implementation
 and review guidance, including systems that control physical equipment.
 
 **Dependent capability.** A business capability whose normal operation requires an AI system

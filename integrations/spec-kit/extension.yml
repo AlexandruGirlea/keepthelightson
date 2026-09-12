@@ -2,12 +2,12 @@ schema_version: "1.0"
 
 extension:
   id: klod
-  name: KLOD (Keep the Lights On)
-  version: "0.1.1"
+  name: Keep The Lights On Development (KLOD)
+  version: "0.1.2"
   description: Plan AI features people can take over, then check the implementation and evidence.
   author: Alex Girlea
   repository: https://github.com/AlexandruGirlea/keepthelightson
-  homepage: https://keepthelightson.eu
+  homepage: https://keepthelightson.dev
   license: CC-BY-4.0
 
 requires:

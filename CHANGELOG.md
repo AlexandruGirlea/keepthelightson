@@ -8,6 +8,14 @@ skills package, its bundled references and the project documentation.
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-09-12
+
+### Changed
+
+- The website moved to keepthelightson.dev. Every link in the skills, bundled references,
+  integrations and repository files points to the new domain.
+- The Spec Kit extension is named Keep The Lights On Development (KLOD).
+
 ## [0.1.1] - 2026-09-12
 
 ### Changed

@@ -35,7 +35,7 @@ The licence requires that you keep the attribution notices, link to the licence,
 you changed anything (section 3(a) of the legal code). A notice that satisfies this:
 
 > Keep The Lights On, version <!-- generated:spec-version -->0.1.0<!-- /generated:spec-version -->, by Alex Girlea, [girlea.ro](https://girlea.ro). Licensed CC BY 4.0.
-> https://keepthelightson.eu
+> https://keepthelightson.dev
 
 If you have modified the text, say so in the notice, and do not present the result as the
 specification itself. Quoting a clause verbatim in a policy document, a procurement pack, an audit

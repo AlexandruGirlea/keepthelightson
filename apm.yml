@@ -1,11 +1,11 @@
 # APM manifest: https://microsoft.github.io/apm/specs/schemas/manifest-v0.1.schema.json
 
 name: klod
-version: 0.1.1
+version: 0.1.2
 
 description: >-
-  Keep The Lights On (KLOD) development practices for AI supplier continuity and
-  human control. The klod skill helps build AI features with a usable human path.
+  Keep The Lights On Development (KLOD): practices for AI supplier continuity
+  and human control. The klod skill helps build AI features with a usable human path.
   The klod-check skill reviews existing code and writes an evidence-based report
   in klod_report.md.
 

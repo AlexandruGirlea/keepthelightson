@@ -6,7 +6,7 @@ instructions, poisoned inputs or a compromised model.
 
 This sixth KLOD principle applies to AI running in your application, whether you use a hosted
 model or run it yourself. It is design guidance, separate from the
-[specification's supplier-dependence clauses and L0 to L3 levels](https://keepthelightson.eu/standard.html).
+[specification's supplier-dependence clauses and L0 to L3 levels](https://keepthelightson.dev/standard.html).
 
 ## Enforce control where actions happen
 

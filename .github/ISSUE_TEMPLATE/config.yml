@@ -6,10 +6,10 @@ contact_links:
       Use the RFC process for changes to requirements, level definitions or measurement rules.
       Include the problem, proposed text and impact on existing implementations.
   - name: Read the specification first
-    url: https://keepthelightson.eu/standard.html
+    url: https://keepthelightson.dev/standard.html
     about: >-
       Read the numbered requirements and use the specification-question template to report ambiguity.
   - name: Read the guides and try the self-check
-    url: https://keepthelightson.eu
+    url: https://keepthelightson.dev
     about: >-
       Practical guidance, the browser self-check and the KLOD blog.

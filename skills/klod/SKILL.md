@@ -3,7 +3,7 @@ name: klod
 license: CC-BY-4.0, see references/LICENSE-SPEC.md
 metadata:
   author: Alex Girlea
-  homepage: https://keepthelightson.eu
+  homepage: https://keepthelightson.dev
 description: Build or change AI features with a usable human path and an authorised AI-off control. Use for AI integrations, manual work queues, emergency takeover and LIGHTS.md entries. Human-control guidance applies to hosted and self-run runtime AI; supplier-dependence levels apply only to hosted AI. Use klod-check for repository audits.
 ---
 

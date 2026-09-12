@@ -17,8 +17,8 @@ versions `>=1.0.6,<2.0.0`. Other versions in that range have not been tested.
 If you are starting a new Spec Kit project, install the tested CLI and initialise it first:
 
 ```bash
-uv tool install specify-cli==1.0.6
-specify init my-project --integration claude
+uv tool install specify-cli==1.0.6 &&
+specify init my-project --integration claude &&
 cd my-project
 ```
 
@@ -28,7 +28,7 @@ for a project that already uses Spec Kit.
 Install the extension from the matching KLOD release, from your project root:
 
 ```bash
-specify extension add klod --from https://github.com/AlexandruGirlea/keepthelightson/releases/download/v0.1.1/klod-spec-kit.zip
+specify extension add klod --from https://github.com/AlexandruGirlea/keepthelightson/releases/download/v0.1.2/klod-spec-kit.zip &&
 specify extension list
 ```
 
@@ -42,8 +42,8 @@ To install from a local checkout instead, clone the release tag next to your pro
 point Spec Kit at the extension directory:
 
 ```bash
-git clone --depth 1 --branch v0.1.1 https://github.com/AlexandruGirlea/keepthelightson.git ../keepthelightson
-specify extension add --dev ../keepthelightson/integrations/spec-kit
+git clone --depth 1 --branch v0.1.2 https://github.com/AlexandruGirlea/keepthelightson.git ../keepthelightson &&
+specify extension add --dev ../keepthelightson/integrations/spec-kit &&
 specify extension list
 ```
 

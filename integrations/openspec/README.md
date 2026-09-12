@@ -4,7 +4,7 @@ Plan AI features with a human path, then check the implemented behaviour. This
 independent custom schema adds KLOD to OpenSpec's proposal, specs, design and tasks.
 It includes the portable `klod` and `klod-check` guidance and their references.
 
-**Version:** 0.1.1. **Compatibility tested:** OpenSpec 1.13.0, using its released CLI.
+**Version:** 0.1.2. **Compatibility tested:** OpenSpec 1.13.0, using its released CLI.
 This is a custom schema, not an official OpenSpec plugin or an accepted catalog entry.
 
 ## Install
@@ -13,8 +13,7 @@ You need Python 3.10 or later for the installer and Node.js 20.19 or later for t
 OpenSpec release. In your project, install OpenSpec and initialise it if needed:
 
 ```sh
-npm install -g @fission-ai/openspec@1.13.0
-openspec init
+npm install -g @fission-ai/openspec@1.13.0 && openspec init
 ```
 
 Choose your coding assistant during OpenSpec setup. If the project is already
@@ -26,8 +25,8 @@ keeps the checkout out of your own repository, then run the installer from your 
 directory:
 
 ```sh
-git clone --depth 1 --branch v0.1.1 https://github.com/AlexandruGirlea/keepthelightson.git ../keepthelightson
-python3 ../keepthelightson/integrations/openspec/install.py --project .
+git clone --depth 1 --branch v0.1.2 https://github.com/AlexandruGirlea/keepthelightson.git ../keepthelightson &&
+python3 ../keepthelightson/integrations/openspec/install.py --project . &&
 openspec schema validate klod
 ```
 
