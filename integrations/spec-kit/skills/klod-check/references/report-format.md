@@ -1,206 +1,324 @@
 # The report
 
-Write `klod_report.md` at the repository root. Use these section titles and order so reports
-can be compared across projects and rescans.
+Write `klod_report.md` at the repository root. The report is read by busy people: keep it to
+one screen for a product with no hosted AI, and never longer than the template allows. Every
+number, level and gap must carry file or record evidence. Copy the template below and fill
+in the placeholders; do not add sections, and drop only the sections the template marks
+optional.
 
-## Structure
+## The result line
 
-1. **Identity and headline.** Start with `# <Project name> · KLOD report` and the visible
-   [identity block](report-metadata.md): project, sanitised Git origin or local-project status,
-   revision, exact active model or unavailable reason, timestamp and timezone. Then state the
-   dependent-capability count, worst supported level and coverage. Short reports use the same block.
-2. **Assessment.** Inspected scope, repository classification with evidence, and specification
-   version from `references/specification.md`, not the skill package version.
-3. **Coverage.** Every project area, with status (Inspected, Partially inspected, Excluded or
-   Inaccessible), AI use and uncertainty. Any project-owned area not fully inspected makes
-   overall coverage Partial.
-4. **AI inventory.** Every AI use: file/line, workflow, category (hosted runtime, self-run,
-   development-time, unused or sample) and whether gated. Only hosted runtime dependence enters
-   capability counts and levels; self-run runtime AI still receives a human-control review.
-5. **Capabilities.** Capability, supplier, declared level, supported level and evidence limit.
-   Use stable business names. Reconcile supplier relationships and counts with the inventory.
-6. **Gate results.** Every gate group in the gate guide, per capability: satisfied, failed,
-   evidence missing or not applicable, with evidence or a finding reference. Continue after failure.
-7. **Portability.** Per hosted capability, how the provider is wired (one adapter or gateway,
-   several places, everywhere), whether the provider and model are chosen by configuration,
-   provider-specific features and embeddings in use, and whether a switch has been run. Reported
-   with file evidence; it changes no level.
-8. **Findings.** Confirmed clause gaps in the format below. For runtime AI, include the separate
-   `### Human-control observations (principle 6)` subsection.
-9. **Evidence to obtain.** External records that could change a result, tied to findings or uncertainties.
-10. **Changes since the previous scan.** IDs new, resolved, unchanged or regrouped; otherwise
-   “First scan”. Preserve owner notes and accepted risks.
-11. **Scope and limits.** Inspection exclusions and uncertainty. State that this was a repository
-    review, not a drill; no service was interrupted and no provider called.
+The line after the identity block states the outcome. Use exactly one of these forms.
 
-## Findings
-
-A finding requires a traced runtime dependency and a clause gap supported by evidence.
-Untraced imports, provider names and suspected call paths remain leads in Coverage.
-
-Each finding contains:
-
-- Stable ID `KLOD-<clause>-<capability-slug>` and status: new, unchanged, accepted and unresolved, or resolved.
-- Severity and confidence as defined below.
-- Capability, supplier dependency and what stops if the supplier stops.
-- Linked clause; file/line or dated-record evidence; counterevidence.
-- Supported-level consequence and remaining uncertainty.
-- Next action, owner (or “to assign”) and evidence needed for closure.
-
-Severity reflects the consequences of supplier loss that the evidence supports:
-
-| Severity | Basis |
+| Result | Use when |
 |---|---|
-| High | No usable path: the capability stops, fallback depends on the unavailable supplier, or required data becomes inaccessible. |
-| Medium | A path exists but readiness is unproven, expired or under-staffed: missing drills, stale measurements, one operator, model-only knowledge or no common-mode assessment. |
-| Low | Record-keeping or SHOULD gap without an evidenced operational consequence, such as an overdue register review. |
+| `**Result: PASS.** No dependence on an external AI provider.` | Coverage is complete and no hosted runtime AI was traced. Self-run models and development-time AI do not change this. |
+| `**Result: L0.**`, `**Result: L1.**`, `**Result: L2.**` or `**Result: L3.**` | Hosted runtime AI was traced. Give the worst supported level across capabilities. |
+| `**Result: NOT ESTABLISHED.**` | A project-owned area could not be inspected and no hosted dependence was traced. |
+| `**Result: NOT GRADED.** Library, SDK, demo or sample.` | The repository is not a product or service. |
 
-A missing register entry caps the level at L0 (4.1.3) but does not itself establish High severity.
-State uncertainty where consequences depend on unavailable records; “not found here” does not
-mean “does not exist”.
+Follow the result with one sentence: the count of dependent capabilities, the worst
+supported level when there is one, and coverage. For example:
+`**Result: L1.** 2 dependent capabilities. Worst supported level: L1. Coverage: complete.`
+For a pass: `**Result: PASS.** No dependence on an external AI provider. 0 dependent capabilities. Coverage: complete.`
 
-Confidence is **High** for a traced capability and demonstrated gap with no counterevidence;
-**Medium** when the dependency is established but the gap relies on records absent from the
-repository (`EVIDENCE-NOT-IN-REPO`). Low-confidence leads belong in Coverage, not Findings.
+PASS is a scan outcome, not a KLOD level or a conformance claim. Levels belong to
+capabilities, never to a product or an organisation (specification 5.5).
 
-## Human-control observations
+## Length limits
 
-Use the Findings subsection `### Human-control observations (principle 6)` for runtime AI.
-State whether controls are evidenced, a gap is demonstrated or evidence is missing. Cite operator
-authority, the action boundary, queued and late work, human operation, restart controls and
-inspected tests or records.
+| Section | Limit |
+|---|---|
+| Summary | 3 to 5 bullets, one sentence each |
+| AI inventory | One row per AI use; 12 rows at most, group the rest |
+| Capabilities | One row per capability |
+| Gate results | One table per capability; 6 rows for L0 or L1, 15 rows only for a declared L2 or L3 |
+| Findings | One block of 5 bullets per finding; nothing else |
+| Human control | One table, 5 rows, or 6 for physical equipment |
+| Coverage | One row per project area |
+| Evidence to obtain | 3 bullets at most |
+| Scope and limits | 4 bullets |
 
-Give each distinct observation a stable `KLOD-P6-<capability-slug>-<control-slug>` ID. Include
-status, consequence, evidence and counterevidence, owner, next action and closure evidence.
-Mark its basis **Principle 6 (informative)** and level consequence **None by itself**. Describe
-the exposure without applying supplier-outage severity or inferring danger from the sector.
-When no gap is found, record inspected controls and verification limits.
+Write in short plain sentences. No introductions, no repeated definitions, no advice that is
+not tied to a row or a finding.
 
-Self-run AI can have observations while the headline reports zero dependent capabilities and
-no level.
+## Words with fixed meanings
 
-## Example
+- Gate result: **Satisfied**, **Failed**, **Missing** (record not in the repository,
+  `EVIDENCE-NOT-IN-REPO`) or **N/A**.
+- Inventory type: **Hosted runtime**, **Self-run**, **Installation-time** (weights or an
+  engine downloaded once, then held), **Development-time**, **Unused** or **Sample**.
+  Only Hosted runtime counts toward a level.
+- Human-control status: **In place**, **Gap**, **Not checked**.
+- Severity: **High** (the capability stops or its data becomes inaccessible), **Medium**
+  (a path exists but readiness is unproven, expired or under-staffed), **Low** (record-keeping
+  or a SHOULD gap without an operational consequence).
+- Confidence: **High** (traced and demonstrated, no counterevidence), **Medium** (dependency
+  traced, gap relies on records absent from the repository).
+- Finding IDs: `KLOD-<clause>-<capability-slug>`, stable across rescans. Status: new,
+  unchanged, accepted and unresolved, or resolved.
 
-Illustrative project and evidence; replace all values and citations with inspected facts.
+## Template
 
 ```markdown
-# Example helpdesk · KLOD report
+# <Project> · KLOD report
 
-- **Project:** Example helpdesk
-- **Git origin:** Not applicable (local project; not a Git repository)
-- **Revision:** Not applicable (local project; no Git revision)
-- **Model:** Unavailable (the host did not expose an exact active model identifier)
-- **Report timestamp:** 2026-09-11T07:42:18+00:00 (UTC)
+- **Project:** <name and version>
+- **Git origin:** <sanitised origin, or Not applicable / Unavailable with a reason>
+- **Revision:** <commit, or Not applicable / Unavailable with a reason>
+- **Model:** <exact active model (source: where it was read), or Unavailable with a reason>
+- **Report timestamp:** <ISO 8601 with offset (timezone)>
 
-1 dependent capability found. Worst supported level: L1. Coverage: complete.
+**Result: <PASS / L0 / L1 / L2 / L3 / NOT ESTABLISHED / NOT GRADED>.** <one sentence: count, worst level, coverage>
 
-## Assessment
+## Summary
 
-Scope: example-helpdesk, a deployed service (Dockerfile; src/main.py:1).
-Assessed against specification 0.1.0 at the timestamp above.
-
-## Coverage
-
-| Area | Status | AI use found | Remaining uncertainty |
-|---|---|---|---|
-| src/ | Inspected | Support drafting | None |
-| deploy/, Dockerfile, requirements.txt | Inspected | Provider A endpoint | None |
-| tests/ | Inspected | Provider stub and takeover checks | Tests inspected, not executed |
-| .github/ | Inspected | Development-time AI review | None |
-| docs/, LIGHTS.md | Inspected | Manual runbook and drill records | Events not independently observed |
+- Classification: <product / service / library / demo>, <one clause of evidence>.
+- <What depends on AI, in business terms, or "No business work depends on a hosted model.">
+- <The most important gap, with its finding ID, or "No gap against the numbered clauses.">
+- <The first action and who owns it.>
+- Assessed against specification <version from references/specification.md>.
 
 ## AI inventory
 
-| Use | Location | Workflow | Category | Gated |
+| AI use | Where | Workflow | Type | Counts toward a level |
 |---|---|---|---|---|
-| Provider A chat completions | src/drafting.py:12 | Support drafting | Hosted runtime | Yes |
-| AI review action | .github/workflows/review.yml:14 | Pull request review | Development-time | No |
-| Unused AI SDK | requirements.txt:7 | No call site or configuration use found | Unused | No |
+| <supplier and model or engine> | <path:lines> | <business work it serves, or None> | <Hosted runtime / Self-run / Installation-time / Development-time / Unused / Sample> | <Yes / No> |
 
 ## Capabilities
 
-| Capability | Supplier | Declared | Supported | Evidence limit |
+| Capability | Supplier | Declared | Supported | Blocking gap |
 |---|---|---|---|---|
-| Support drafting | Provider A | L2 | L1 | Last successful drill was 102 days ago |
+| <business work> | <supplier> | <level or None> | <level> | <finding ID or "None"> |
+
+Portability: <per capability, one sentence: where the provider is wired, chosen by configuration or hard-coded, provider-specific features, and whether a switch was ever run>.
 
 ## Gate results
 
-All rows concern support drafting.
-
+<Omit this section when there are no capabilities. One table per capability. Keep the bold line and the table together, with no blank line between them.>
+**<Capability>**
 | Gate | Result | Evidence |
 |---|---|---|
-| Register, 4.1.1–4.1.3 | Satisfied | LIGHTS.md:12 identifies supplier, work, level and owner |
-| Instructions and capacity, 4.2.1–4.2.2 | Satisfied | docs/support-runbook.md:8 |
-| Independent path, 4.2.3 | Satisfied | src/manual_reply.py:18; docs/support-runbook.md:8 |
-| Accessible data, 4.6.1 | Satisfied | src/tickets.py:20 reads the local ticket store |
-| Operator roles, 4.5.1 | Satisfied | docs/support-runbook.md:4 |
-| Supplier common-mode assessment, 4.2.4 | Not applicable | No substitute AI supplier |
-| Independent knowledge, 4.6.2 | Satisfied | docs/reply-rules.md:1 contains the decision rules |
-| Measured TTM and capacity, 4.3.1–4.3.4 | Satisfied | docs/drills/2026-06-01.md:12 |
-| AI-off, real work, unannounced frequency, 4.4.2–4.4.4 | Satisfied | docs/drills/index.md:3; latest drill was unannounced |
-| Measurements and failures recorded, 4.4.5 | Satisfied | docs/drills/2026-06-01.md:12 |
-| Failed-drill recovery, 4.4.6 | Not applicable | docs/drills/index.md:3 records no failed drills |
-| Two competent operators, 4.5.2 and 4.5.5 | Satisfied | docs/drills/2026-06-01.md:6 records unaided performance |
-| Departure re-drill, 4.5.3 | Not applicable | LIGHTS.md:18 confirms both operators remain |
-| L2 recency, 4.4.1 | Failed | KLOD-4.4.1-support-drafting |
-| L3 routine performance and annual review | Not applicable | No routine-performance claim; people use the path during drills |
+| Register: supplier, capability, level, owner (4.1.1–4.1.3) | <Satisfied / Failed / Missing / N/A> | <path:lines or record, or what was searched> |
+| Instructions and capacity limits (4.2.1–4.2.2) | | |
+| Manual path independent of the AI (4.2.3) | | |
+| Data accessible without the supplier (4.6.1) | | |
+| Operators identified by role (4.5.1) | | |
+| L2 and L3 gates (4.2.4, 4.3.1–4.3.4, 4.4.1–4.4.6, 4.5.2–4.5.5, 4.6.2) | <N/A when nothing above L1 is declared; otherwise replace this row with one row per gate from references/gates.md> | |
 
-## Portability
+## Findings
 
-| Capability | Provider wiring | Chosen by configuration | Provider-specific use | Switch ever run |
+<One block per finding against a numbered clause. Write "No findings against the numbered clauses." when there are none.>
+### KLOD-<clause>-<capability-slug>
+- **Capability:** <business work>, on <supplier>. <What stops if the supplier stops.>
+- **Gap:** <requirement, linked as [<clause>](https://keepthelightson.dev/standard.html#c-<clause with dashes>)>. Evidence: <path:lines or dated record>. Counterevidence: <or "none">.
+- **Severity and confidence:** <High / Medium / Low>, <High / Medium>. Status: <new / unchanged / accepted and unresolved / resolved>.
+- **Consequence:** supported <level>; <remaining uncertainty>.
+- **Next action:** <action>. Owner: <role or "to assign">. Closure: <the record that closes it>.
+
+### Human control (principle 6)
+
+<One table for all runtime AI, hosted or self-run. Informative: it changes no level.>
+| Control | Status | Evidence | Next action |
+|---|---|---|---|
+| AI-off switch that works without the supplier, with the mode visible | <In place / Gap / Not checked> | <path:lines> | <action or "None"> |
+| Mode enforced where actions are accepted, kept across restarts | | | |
+| Late results and queued AI actions rejected after switch-off | | | |
+| Manual work usable: inputs, status, permissions, controls | | | |
+| Restart needs a recorded human decision | | | |
+| Safe state and qualified operators for physical equipment (only when equipment is involved) | | | |
+
+## Coverage
+
+| Area | Status | Note |
+|---|---|---|
+| <directory or file group> | <Inspected / Partially inspected / Excluded / Inaccessible> | <AI use found, exclusion reason or untraced lead> |
+
+## Evidence to obtain
+
+- <Record, who holds it, and which finding or result it would change. Or "None.">
+
+## Scope and limits
+
+- Repository review, not a drill. No service was interrupted and no provider was called.
+- <What was read but not run, such as tests, and what was not inspected, such as model weights.>
+- <Uncommitted changes, if any, and what they could affect. Or "Working tree clean.">
+- Previous scan: <none (first scan) / date, with IDs new, resolved, unchanged or regrouped>.
+```
+
+## Example: a pass
+
+```markdown
+# Ledger desk · KLOD report
+
+- **Project:** Ledger desk 2.4.0
+- **Git origin:** https://example.invalid/team/ledger-desk.git
+- **Revision:** 0123456789abcdef0123456789abcdef01234567
+- **Model:** example-model-2026-06 (source: host system prompt)
+- **Report timestamp:** 2026-09-12T14:00:42+03:00 (Europe/Bucharest)
+
+**Result: PASS.** No dependence on an external AI provider. 0 dependent capabilities. Coverage: complete.
+
+## Summary
+
+- Classification: product, a web service with a worker (Dockerfile:1; src/main.py:1).
+- No business work depends on a hosted model. Receipt matching runs on a classifier the team trains and hosts itself (src/match/model.py:12).
+- No gap against the numbered clauses. One human-control gap: matches are applied without a way to stop the classifier (see Human control).
+- First action: add an operator switch that holds new matches for manual review. Owner: platform lead.
+- Assessed against specification 0.1.0.
+
+## AI inventory
+
+| AI use | Where | Workflow | Type | Counts toward a level |
 |---|---|---|---|---|
-| Support drafting | One adapter, src/llm/adapter.py:1 | Yes, settings.LLM_PROVIDER (src/settings.py:14) | None found | No comparison recorded |
+| Self-trained receipt classifier served by the worker | src/match/model.py:12; worker/run.py:40 | Receipt matching | Self-run | No |
+| Code review assistant in CI | .github/workflows/review.yml:8 | None, pull request review | Development-time | No |
+| Sample chat client in docs/examples | docs/examples/chat.py:3 | None | Sample | No |
 
-One place to change. A switch to another supplier or a self-run model is a configuration
-change plus an untested prompt; no level consequence.
+## Capabilities
+
+| Capability | Supplier | Declared | Supported | Blocking gap |
+|---|---|---|---|---|
+| None | No hosted AI supplier | None | No level applies | None |
+
+Portability: not applicable.
+
+## Findings
+
+No findings against the numbered clauses.
+
+### Human control (principle 6)
+
+| Control | Status | Evidence | Next action |
+|---|---|---|---|
+| AI-off switch that works without the supplier, with the mode visible | Gap | No switch found; worker/run.py:40 applies every match | Add a hold mode checked by the worker |
+| Mode enforced where actions are accepted, kept across restarts | Gap | Depends on the switch above | Same |
+| Late results and queued AI actions rejected after switch-off | Not checked | Queue in worker/queue.py:1 not traced to a mode check | Trace after the switch exists |
+| Manual work usable: inputs, status, permissions, controls | In place | src/ui/match.py:22 lets a clerk match by hand | None |
+| Restart needs a recorded human decision | Gap | No restart record | Log who resumes and why |
+
+## Coverage
+
+| Area | Status | Note |
+|---|---|---|
+| src/, worker/ | Inspected | Self-run classifier only |
+| infra/, Dockerfile | Inspected | No AI endpoints |
+| tests/ | Inspected | Read, not run |
+| docs/ | Inspected | Sample client only |
+
+## Evidence to obtain
+
+- None.
+
+## Scope and limits
+
+- Repository review, not a drill. No service was interrupted and no provider was called.
+- Tests were read, not run. Model weights were not inspected.
+- Working tree clean.
+- Previous scan: none (first scan).
+```
+
+## Example: one hosted capability
+
+```markdown
+# Support desk · KLOD report
+
+- **Project:** Support desk 1.8.2
+- **Git origin:** https://example.invalid/team/support-desk.git
+- **Revision:** 89abcdef0123456789abcdef0123456789abcdef
+- **Model:** Unavailable (the host did not expose an exact active model identifier)
+- **Report timestamp:** 2026-09-12T09:15:00+00:00 (UTC)
+
+**Result: L1.** 1 dependent capability. Worst supported level: L1. Coverage: complete.
+
+## Summary
+
+- Classification: product, a deployed service (Dockerfile:1; src/main.py:1).
+- Support reply drafting depends on Provider A; staff can reply by hand from the ticket queue.
+- Biggest gap: the L2 declaration rests on a drill 102 days old (KLOD-4.4.1-support-drafting).
+- First action: run an authorised real-work drill with AI unavailable. Owner: head of support.
+- Assessed against specification 0.1.0.
+
+## AI inventory
+
+| AI use | Where | Workflow | Type | Counts toward a level |
+|---|---|---|---|---|
+| Provider A chat completions | src/drafting.py:12 | Support reply drafting | Hosted runtime | Yes |
+| Provider A SDK in requirements, no other call site | requirements.txt:7 | None | Unused | No |
+
+## Capabilities
+
+| Capability | Supplier | Declared | Supported | Blocking gap |
+|---|---|---|---|---|
+| Support reply drafting | Provider A | L2 | L1 | KLOD-4.4.1-support-drafting |
+
+Portability: one adapter (src/llm/adapter.py:1), provider chosen by configuration (src/settings.py:14), no provider-specific features, no switch recorded.
+
+## Gate results
+
+**Support reply drafting**
+| Gate | Result | Evidence |
+|---|---|---|
+| Register: supplier, capability, level, owner (4.1.1–4.1.3) | Satisfied | LIGHTS.md:12 |
+| Instructions and capacity limits (4.2.1–4.2.2) | Satisfied | docs/support-runbook.md:8 |
+| Manual path independent of the AI (4.2.3) | Satisfied | src/manual_reply.py:18 |
+| Data accessible without the supplier (4.6.1) | Satisfied | src/tickets.py:20 reads the local store |
+| Operators identified by role (4.5.1) | Satisfied | docs/support-runbook.md:4 |
+| Common-mode assessment for a substitute supplier (4.2.4) | N/A | No substitute supplier |
+| No knowledge held only inside AI (4.6.2) | Satisfied | docs/reply-rules.md:1 |
+| TTM and capacity measured in a drill within 12 months (4.3.1–4.3.4) | Satisfied | docs/drills/2026-06-01.md:12 |
+| AI unavailable, real work, one in four unannounced (4.4.2–4.4.4) | Satisfied | docs/drills/index.md:3 |
+| Measurements and failures recorded (4.4.5) | Satisfied | docs/drills/2026-06-01.md:12 |
+| Failed drill followed by a successful one (4.4.6) | N/A | No failed drill recorded |
+| Two people perform unaided (4.5.2, 4.5.5) | Satisfied | docs/drills/2026-06-01.md:6 |
+| Re-drill after departures (4.5.3) | N/A | LIGHTS.md:18, both operators remain |
+| Drill within 90 days for L2 (4.4.1) | Failed | KLOD-4.4.1-support-drafting |
+| Routine human performance and annual review for L3 | N/A | No L3 claim |
 
 ## Findings
 
 ### KLOD-4.4.1-support-drafting
+- **Capability:** support reply drafting, on Provider A. Staff can reply by hand; the automated draft stops.
+- **Gap:** [4.4.1](https://keepthelightson.dev/standard.html#c-4-4-1). Evidence: LIGHTS.md:18 names docs/drills/2026-06-01.md as the last successful drill, 102 days before this report. Counterevidence: none.
+- **Severity and confidence:** Medium, High. Status: new.
+- **Consequence:** supported L1; the L2 declaration has not yet reached its 120-day expiry. Current manual capacity was not observed.
+- **Next action:** arrange an authorised real-work drill with AI unavailable. Owner: head of support. Closure: a dated successful drill record meeting the shared gates.
 
-Status: unchanged. Severity: medium. Confidence: high.
-Capability: support drafting, on Provider A. Staff can reply manually after supplier loss,
-but the most recent recorded successful drill was 102 days ago.
-Requirement: [4.4.1](https://keepthelightson.dev/standard.html#c-4-4-1).
-Evidence: LIGHTS.md:18 identifies docs/drills/2026-06-01.md as the last successful drill.
-Counterevidence: the runbook and independent manual path remain available.
-Consequence: supported L1; the 90-day requirement is unmet. The existing L2 declaration has
-not yet reached its 120-day expiry. Actual current manual capacity was not observed.
-Next action: arrange an authorised real-work drill with AI unavailable.
-Owner: Head of Support. Closure evidence: a dated successful drill meeting the shared gates.
+### Human control (principle 6)
 
-### Human-control observations (principle 6)
+| Control | Status | Evidence | Next action |
+|---|---|---|---|
+| AI-off switch that works without the supplier, with the mode visible | In place | src/control.py:22 | None |
+| Mode enforced where actions are accepted, kept across restarts | In place | src/drafting.py:48 rejects old-generation results | None |
+| Late results and queued AI actions rejected after switch-off | In place | tests/test_stop.py:10, read not run | Verify in the deployment test environment |
+| Manual work usable: inputs, status, permissions, controls | In place | src/manual_reply.py:18 | None |
+| Restart needs a recorded human decision | In place | src/control.py:31 logs who resumed | None |
 
-KLOD-P6-support-drafting-stop. Status: unchanged. Basis: Principle 6 (informative).
-Level consequence: None by itself.
-Evidence: src/control.py:22 persists operator-only stop; src/drafting.py:48 rejects old-generation
-results; src/manual_reply.py:18 permits manual replies. tests/test_stop.py:10 covers late results
-and deliberate restart. No control gap found in these paths; no counterevidence found.
-Limit: tests were inspected, not run; deployed enforcement was not observed.
-Owner: Service operator. Next action: verify these cases in the deployment test environment.
-Closure evidence: recorded results for stop, late outputs, manual replies and restart.
+## Coverage
+
+| Area | Status | Note |
+|---|---|---|
+| src/ | Inspected | Support drafting |
+| deploy/, Dockerfile, requirements.txt | Inspected | Provider A endpoint |
+| tests/ | Inspected | Read, not run |
+| .github/ | Inspected | No AI |
+| docs/, LIGHTS.md | Inspected | Runbook and drill records read; events not independently observed |
 
 ## Evidence to obtain
 
-A new drill record would resolve KLOD-4.4.1-support-drafting. No external record is currently
-needed to establish the repository coverage.
-
-## Changes since the previous scan
-
-Unchanged: KLOD-4.4.1-support-drafting; KLOD-P6-support-drafting-stop.
-New, resolved and regrouped: none. Owner notes retained.
+- A new drill record from the head of support would resolve KLOD-4.4.1-support-drafting.
 
 ## Scope and limits
 
-All project areas listed above were inspected. This was a repository review, not a drill;
-no service was interrupted and no provider called. Operating records were read; the events
-and deployment behaviour were not independently observed.
+- Repository review, not a drill. No service was interrupted and no provider was called.
+- Tests were read, not run. Drill records were read; the drills were not observed.
+- Working tree clean.
+- Previous scan: none (first scan).
 ```
 
-## Acting on the report
+## After the report
 
-Verify citations and supply missing records. Assign unresolved findings an owner and target date;
-prioritise work whose loss stops essential operations. Use `klod` for specific implementation
-changes, arrange authorised drills, update `LIGHTS.md`, then rescan. Accepted risks retain their
-reason, owner and review date but stay unresolved until evidence closes the gap. Review supported
-levels before publishing declarations; levels belong to capabilities, not the organisation.
+Check the citations, supply missing records and give each finding an owner and a date.
+Use `klod` for implementation changes, arrange authorised drills, update `LIGHTS.md` and
+rescan. Accepted risks keep their reason, owner and review date but stay unresolved until
+evidence closes the gap.

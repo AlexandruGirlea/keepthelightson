@@ -13,7 +13,7 @@ import tempfile
 import sys
 
 
-VERSION = "0.1.2"
+VERSION = "0.2.0"
 TESTED_OPENSPEC = "1.13.0"
 MANIFEST = ".klod-install.json"
 LOCAL_NAMES = {'.DS_Store', '.cache', '.git', '.idea', '.pytest_cache', '.ruff_cache', '.venv', '.vscode', '__pycache__'}

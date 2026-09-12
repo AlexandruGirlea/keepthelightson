@@ -4,7 +4,7 @@ Plan AI features with a human path, then check the implemented behaviour. This
 independent custom schema adds KLOD to OpenSpec's proposal, specs, design and tasks.
 It includes the portable `klod` and `klod-check` guidance and their references.
 
-**Version:** 0.1.2. **Compatibility tested:** OpenSpec 1.13.0, using its released CLI.
+**Version:** 0.2.0. **Compatibility tested:** OpenSpec 1.13.0, using its released CLI.
 This is a custom schema, not an official OpenSpec plugin or an accepted catalog entry.
 
 ## Install
@@ -25,7 +25,7 @@ keeps the checkout out of your own repository, then run the installer from your 
 directory:
 
 ```sh
-git clone --depth 1 --branch v0.1.2 https://github.com/AlexandruGirlea/keepthelightson.git ../keepthelightson &&
+git clone --depth 1 --branch v0.2.0 https://github.com/AlexandruGirlea/keepthelightson.git ../keepthelightson &&
 python3 ../keepthelightson/integrations/openspec/install.py --project . &&
 openspec schema validate klod
 ```

@@ -35,6 +35,8 @@ Record these in the inventory without numbered gates or levels:
   classifiers, Ollama, llama.cpp and vLLM. Rented compute is a cloud dependency. Note restrictive
   weights licences separately.
 - Development-only AI, such as coding assistants and review steps in CI.
+- Installation-time downloads of weights or an inference engine that the product then holds
+  and runs locally. Record the source; a runtime dependence needs a call at run time.
 - Samples, tests and provider SDKs with no call on a business runtime path.
 
 Self-run runtime AI still receives a principle 6 control review. Development-only, unused and

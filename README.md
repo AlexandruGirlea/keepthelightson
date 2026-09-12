@@ -25,7 +25,7 @@
 <p align="center"><sub>See the interactive version at <a href="https://keepthelightson.dev">keepthelightson.dev</a>.</sub></p>
 
 <!-- generated:release-line -->
-**Specification 0.1.0** and **skills package 0.1.2**. Release tag: `v0.1.2`.
+**Specification 0.1.0** and **skills package 0.2.0**. Release tag: `v0.2.0`.
 <!-- /generated:release-line -->
 
 ## Use KLOD with your workflow
@@ -84,7 +84,7 @@ Install with [APM](https://github.com/microsoft/apm) from your project directory
 
 <!-- generated:install-command -->
 ```sh
-apm install AlexandruGirlea/keepthelightson#v0.1.2
+apm install AlexandruGirlea/keepthelightson#v0.2.0
 ```
 <!-- /generated:install-command -->
 

@@ -8,6 +8,18 @@ skills package, its bundled references and the project documentation.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-12
+
+### Changed
+
+- The klod-check report is short and table-first: a result line (PASS, a level, NOT
+  ESTABLISHED or NOT GRADED), a five-bullet summary, fixed tables for the AI inventory,
+  capabilities, gates, human control and coverage, and five-bullet finding blocks. The format
+  ships as a fill-in template with two complete examples so it works with ordinary models.
+- The skill instructions are a six-step procedure around that template.
+- The inventory gains an Installation-time type for weights and engines downloaded once and
+  then held.
+
 ## [0.1.2] - 2026-09-12
 
 ### Changed
