@@ -38,10 +38,12 @@ source by the repository's release workflow and attached to every entry on the
 manifest, commands and all KLOD references. This direct installation does not need a catalog
 listing.
 
-To install from a local checkout, use the extension directory:
+To install from a local checkout instead, clone the release tag next to your project and
+point Spec Kit at the extension directory:
 
 ```bash
-specify extension add --dev /path/to/keepthelightson/integrations/spec-kit
+git clone --depth 1 --branch v0.1.1 https://github.com/AlexandruGirlea/keepthelightson.git ../keepthelightson
+specify extension add --dev ../keepthelightson/integrations/spec-kit
 specify extension list
 ```
 

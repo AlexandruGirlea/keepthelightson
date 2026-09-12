@@ -122,7 +122,7 @@ It records managed hashes in `.klod-install.json` inside the installed schema.
 To check whether a bundle matches the installation without writing:
 
 ```sh
-python3 /path/to/klod-openspec/install.py --project . --check
+python3 ../keepthelightson/integrations/openspec/install.py --project . --check
 ```
 
 If you customise the installed schema, keep those changes in version control. Compare
